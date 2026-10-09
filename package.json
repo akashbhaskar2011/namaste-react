@@ -1,0 +1,38 @@
+{
+  "name": "namaste-react",
+  "version": "1.0.0",
+  "description": "this is namaste react by akash bhaskar",
+  "keywords": [],
+  "homepage": "https://github.com/akashbhaskar2011/namaste-react#readme",
+  "bugs": {
+    "url": "https://github.com/akashbhaskar2011/namaste-react/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/akashbhaskar2011/namaste-react.git"
+  },
+  "license": "ISC",
+  "author": "akash bhaskar",
+  "type": "commonjs",
+  "scripts": {
+    "start": "parcel index.html",
+    "build" : "parcel build index.html",
+    "test": "jest"
+  },
+  "devDependencies": {
+    "parcel": "^2.16.4"
+  },
+  "dependencies": {
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0"
+  },
+  "allowScripts": {
+    "@parcel/watcher@2.6.0": true,
+    "@swc/core@1.16.13": true,
+    "lmdb@2.8.5": true,
+    "msgpackr-extract@3.0.4": true
+  },
+  "browserslist": [
+    "last 2 versions"
+  ]
+}
