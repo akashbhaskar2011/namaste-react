@@ -1,150 +1,37 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
+import Header from "./components/Header";
+import Body from "./components/Body";
+import ResturantCard from "./components/ResturantCard";
 
-/*
-header
-  logo
-  navitems 
-body
-  search 
-  resturant container
-    resturant cards
-      img
-      name of item , star rtings , cuisines etc
-footer
-  copyright
-  links
-  address
-  footer
-
-*/
-
-const Header = () => {
-  return (
-    <div className="header">
-      <div>
-        <img
-          className="logo"
-          src="https://graphicsfamily.com/wp-content/uploads/edd/2021/06/Editable-Photoshop-Food-Logo-Design-PNG-Transparent.png"
-        ></img>
-      </div>
-      <div className="nav-items">
-        <ul>
-          <li>
-            <a>Home</a>
-          </li>
-          <li>
-            <a>about us</a>
-          </li>
-          <li>
-            <a>contact</a>
-          </li>
-          <li>
-            <a>cart</a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  );
-};
-
-const stylecard = {
-  backgroundColor: "#302020",
-};
-
-const ResturantCard = (props) => {
-  const { resname, cuisine, rating, delivertime, costforTwo } = props.resdata;
-  return (
-    <div className="res-card" style={stylecard}>
-      <img
-        className="res-logo"
-        alt="res-logo"
-        src="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/bs9qgsy25pn07pzn6xx1"
-      ></img>
-      <h3> {resname}</h3>
-      <h5>{cuisine}</h5>
-      <h5>{rating}</h5>
-      <h5>{delivertime}</h5>
-      <h5>{costforTwo}</h5>
-    </div>
-  );
-};
-
-const resData = [
-  {
-    resname: "Meghana Foods",
-    cuisine: "Biryani, Andhra, North Indian",
-    rating: "4.4 stars",
-    delivertime: "38 mins",
-    costforTwo: "₹400 for two",
-  },
-  {
-    resname: "Empire Restaurant",
-    cuisine: "North Indian, Chinese, Kebabs",
-    rating: "4.2 stars",
-    delivertime: "30 mins",
-    costforTwo: "₹350 for two",
-  },
-  {
-    resname: "A2B - Adyar Ananda Bhavan",
-    cuisine: "South Indian, Sweets, Snacks",
-    rating: "4.3 stars",
-    delivertime: "25 mins",
-    costforTwo: "₹200 for two",
-  },
-  {
-    resname: "Truffles",
-    cuisine: "American, Burgers, Italian",
-    rating: "4.5 stars",
-    delivertime: "35 mins",
-    costforTwo: "₹450 for two",
-  },
-  {
-    resname: "Pizza Hut",
-    cuisine: "Pizzas, Italian, Fast Food",
-    rating: "4.1 stars",
-    delivertime: "28 mins",
-    costforTwo: "₹300 for two",
-  },
-];
-
-const Body = () => {
-  return (
-    <div className="body">
-
-      <div className="search">Search</div>
-
-
-      <div className="res-container">
-        {/* //resturantcard */}
-        {/* <ResturantCard resname="meghna food" 
-          cuisine ="biryani , north indian" /> */}
-        {/* <ResturantCard resData ={reData}></ResturantCard>
-         */}
-        {resData.map((resdata) => (
-          <ResturantCard key={resdata.resname} resdata={resdata} />
-        ))}
-
-
-      </div>
-    </div>
-  );
-};
 
 const AppLayout = () => {
   return (
     <div className="app">
+      
       {/* header */}
       <Header />
 
       {/* body */}
       <Body />
+
       {/* footer */}
+
     </div>
   );
 };
 
 ReactDOM.createRoot(document.getElementById("root")).render(<AppLayout />);
+
+
+
+
+
+
+
+
+
+
 
 // --------------------------------********-----------------------------------------------
 // React.createElement => reactElement - js Object=> render- to make it html Element
