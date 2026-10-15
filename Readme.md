@@ -45,3 +45,8 @@ footer
  (Normal JS utility funcitons )
  -useState() -- superpowerfil react variables
  -useEffect()
+
+# Routing 
+  - 2types of rounting in web apps
+    -client side routing
+    -server side routing

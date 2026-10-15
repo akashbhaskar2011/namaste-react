@@ -1,5 +1,5 @@
 import { CDN_URL } from "../utils/constancts";
-
+import { Link } from "react-router-dom";
 
 const stylecard = {
   backgroundColor: "#322121",
@@ -8,7 +8,7 @@ const stylecard = {
 
 const RestaurantCard = (props) => {
   const { resData } = props;
-  
+  console.log(props);
   const {
     cloudinaryImageId,
     name,
@@ -16,6 +16,7 @@ const RestaurantCard = (props) => {
     cuisines,
     costForTwo,
     sla,
+    id
   } = resData;
 
   return (
@@ -24,6 +25,8 @@ const RestaurantCard = (props) => {
       className="res-card"
       style={stylecard}
     >
+      
+      <Link to={"/resturant/"+id} className="res-link">
       <img
         alt="res-logo"
         src={CDN_URL + cloudinaryImageId}
@@ -33,6 +36,7 @@ const RestaurantCard = (props) => {
       <h4>{avgRating} stars</h4>
       <h4>{costForTwo}</h4>
       <h4>{sla.deliveryTime} minutes</h4>
+      </Link>
     </div>
   );
 };

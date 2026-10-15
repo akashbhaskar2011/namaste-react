@@ -2,6 +2,7 @@ import RestaurantCard from "./ResturantCard";
 import resList from "../utils/mockData";
 import { useEffect, useState } from "react";
 import Shimmer from "./Shimmer";
+import { SWIGGY_RESTURANTS } from "../utils/constancts";
 
 //state variable - super powefrful variable
 // whenever state of the variabe; cahnges , react triggers a reconcillation cycle , (re- rendering of the componenet)
@@ -11,14 +12,16 @@ const Body = () => {
   const [searchText , setSearchText] = useState("");
 
   const [filteredRresturantList , setFilteredResturant] = useState([])
-
+//if no dependecy array then useEffert is called on every render 
+//if dependceny array is empty = [] => use effect is called only once when the intial renders happens
+//id sometihng is ther in the dependcy array , [btnNameReact]  then use effect is called everytime when the btnReact is upadtes/changes
   useEffect(() => {
     fetchData();
   }, []);
 
   const fetchData = async () => {
     const data = await fetch(
-      "https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.97530&lng=77.59100&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING",
+      SWIGGY_RESTURANTS
     );
     const json = await data.json();
 
