@@ -10,7 +10,7 @@ const ResturantMenu = () => {
   const [resInfo, setResInfo] = useState(null);
 
   const { resId } = useParams();
-  console.log(resId);
+  // console.log(resId);
 
   useEffect(() => {
     const fetchMenu = async () => {
