@@ -3,6 +3,7 @@ import resList from "../utils/mockData";
 import { useEffect, useState } from "react";
 import Shimmer from "./Shimmer";
 import { SWIGGY_RESTURANTS } from "../utils/constancts";
+import useOnlineStatus from "../utils/useOnlineStatus";
 
 //state variable - super powefrful variable
 // whenever state of the variabe; cahnges , react triggers a reconcillation cycle , (re- rendering of the componenet)
@@ -25,21 +26,27 @@ const Body = () => {
   const fetchData = async () => {
     const data = await fetch(SWIGGY_RESTURANTS);
     const json = await data.json();
+console.log(json)
+    const restaurants =
+      json?.data?.cards?.[1]?.card?.card?.gridElements?.infoWithStyle
+        ?.restaurants;
 
-    setListOfResturant(
-      json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle
-        ?.restaurants,
-    );
-    setFilteredResturant(
-      json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle
-        ?.restaurants,
-    );
+    setListOfResturant(restaurants);
+    setFilteredResturant(restaurants);
   };
 
   //   //conditional rendering
-  //   if(listOfResturant.length === 0){
-  //     return <Shimmer/>
-  //   }
+  // if(listOfResturant.length === 0){
+  //   return <Shimmer/>
+  // }
+
+  // console.log(listOfResturant)
+
+  const onlineStatus = useOnlineStatus();
+
+  if (onlineStatus === false) {
+    return <h1> Looks like you're offline PLease chek your internate</h1>;
+  }
 
   return listOfResturant.length === 0 ? (
     <Shimmer></Shimmer>
@@ -58,7 +65,7 @@ const Body = () => {
           ></input>
           <button
             onClick={() => {
-              console.log(listOfResturant);
+              // console.log(listOfResturant);
               //filter the resturant cards and update the ui
               //search box
               const filteredList = listOfResturant.filter((resData) =>

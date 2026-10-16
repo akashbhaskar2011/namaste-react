@@ -1,26 +1,14 @@
 // i used gpt to add more things to my existing  code
 
-import { useEffect, useState } from "react";
-import { MENU_URL } from "../utils/constancts";
 import Shimmer from "./Shimmer";
 import "./ResturantMenu.css";
 import { useParams } from "react-router-dom";
+import useResturantMenu from "../utils/useResturantMenu";
 
 const ResturantMenu = () => {
-  const [resInfo, setResInfo] = useState(null);
-
   const { resId } = useParams();
   // console.log(resId);
-
-  useEffect(() => {
-    const fetchMenu = async () => {
-      const response = await fetch(MENU_URL + resId);
-      const json = await response.json();
-      setResInfo(json);
-    };
-
-    fetchMenu();
-  }, []);
+  const resInfo = useResturantMenu(resId);
 
   if (resInfo === null) {
     return <Shimmer />;

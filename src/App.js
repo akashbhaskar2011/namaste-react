@@ -1,4 +1,4 @@
-import React from "react";
+import React, {lazy , Suspense} from "react";
 import ReactDOM from "react-dom/client";
 import Header from "./components/Header";
 import Body from "./components/Body";
@@ -9,7 +9,10 @@ import ErrorElement from "./components/ErrorElement";
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import ContactUs from "./components/ContactUs";
 import ResturantMenu from "./components/ResturantMenu";
+// import Grocery from "./components/Grocery";
 
+
+const Grocery = lazy(()=>import("./components/Grocery"))
 const AppLayout = () => {
   return (
     <div className="app">
@@ -19,7 +22,9 @@ const AppLayout = () => {
     </div>
   );
 };
-
+//chunnking
+//code splitting//
+//dynamic bundling 
 const AppRouter = createBrowserRouter([
   {
     path: "/",
@@ -36,6 +41,12 @@ const AppRouter = createBrowserRouter([
       {
         path: "/contact",
         element: <ContactUs></ContactUs>,
+      },
+      {
+        path: "/Grocery",
+        element:<Suspense fallback={
+          <h1>fallback is called when some issue happens in grocery componet</h1>
+        }><Grocery></Grocery></Suspense> 
       },
       {
         path: "resturant/:resId",

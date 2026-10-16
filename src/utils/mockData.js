@@ -1,3 +1,6 @@
+
+
+//this fil is now not being used this was just for mock data when swiggy api was not in use 
 let resList = [
   {
     resname: "Meghana Foods",
