@@ -15,11 +15,11 @@ class About extends React.Component {
     render(){
         // console.log("parent-render")
          return(
-        <div>
-            <h1>About</h1>
-            <h2>this is namaste react web series</h2>
+        <div className="mx-auto max-w-4xl px-4 py-12 sm:px-6">
+            <div className="rounded-3xl bg-white p-8 shadow-sm sm:p-12"><p className="mb-3 text-sm font-bold uppercase tracking-[0.18em] text-[#fc8019]">Our story</p><h1 className="text-3xl font-extrabold text-[#282c3f]">About</h1>
+            <h2 className="mt-3 text-lg font-medium text-[#686b78]">this is namaste react web series</h2>
             {/* <User name={"akash bhaskar (functional component)"}></User> */}
-            <UserClass name={"akash bhaskar (class component)"}></UserClass>
+            <div className="mt-8"><UserClass name={"akash bhaskar (class component)"}></UserClass></div></div>
             {/* <UserClass name={"miku babu (class component)"}></UserClass> */}
         </div>
     )
@@ -86,3 +86,5 @@ IMPORTANT:
 // export default About;
 
 export default About;
+
+// Changes made: added a clean Swiggy-inspired informational page layout while retaining component behavior.

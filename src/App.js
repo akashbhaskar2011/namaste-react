@@ -15,7 +15,7 @@ import ResturantMenu from "./components/ResturantMenu";
 const Grocery = lazy(()=>import("./components/Grocery"))
 const AppLayout = () => {
   return (
-    <div className="app">
+    <div className="app min-h-screen bg-[#f7f7f7]">
       <Header />
 
       <Outlet></Outlet>
@@ -63,6 +63,8 @@ ReactDOM.createRoot(document.getElementById("root"))
 );
 
 // --------------------------------********-----------------------------------------------
+
+// Changes made: added a neutral Swiggy-inspired application background without changing routing logic.
 // React.createElement => reactElement - js Object=> render- to make it html Element
 
 // React Element
@@ -159,9 +161,13 @@ const Title = () => <h1 className="heading">Welcome to react </h1>;
 
 // const root = ReactDOM.createRoot(document.getElementById("root"));
 
+// Changes made: added a neutral Swiggy-inspired application background without changing routing logic.
+
 // console.log(parent);
 // // root.render(heading);
 // root.render(parent);
 // // this will replace existing root inpace of appending
 
 // --------------------------------********-----------------------------------------------
+
+// Changes made: added a neutral Swiggy-inspired application background without changing routing logic.

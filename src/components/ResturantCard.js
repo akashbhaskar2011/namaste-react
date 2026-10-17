@@ -2,7 +2,7 @@ import { CDN_URL } from "../utils/constancts";
 import { Link } from "react-router-dom";
 
 const stylecard = {
-  backgroundColor: "#322121",
+  backgroundColor: "#ffffff",
 };
 
 
@@ -22,23 +22,22 @@ const RestaurantCard = (props) => {
   return (
     <div
    
-      className="res-card"
+      className="res-card group overflow-hidden rounded-2xl bg-white shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-xl"
       style={stylecard}
     >
       
       <Link to={"/resturant/"+id} className="res-link">
       <img
+        className="h-48 w-full object-cover"
         alt="res-logo"
         src={CDN_URL + cloudinaryImageId}
       />
-      <h3 className="font-bold py-4 text-lg">{name}</h3>
-      <h4>{cuisines.join(", ")}</h4>
-      <h4>{avgRating} stars</h4>
-      <h4>{costForTwo}</h4>
-      <h4>{sla.deliveryTime} minutes</h4>
+      <div className="p-4"><h3 className="truncate text-lg font-extrabold text-[#282c3f]">{name}</h3><h4 className="mt-1 truncate text-sm text-[#686b78]">{cuisines.join(", ")}</h4><div className="mt-3 flex items-center gap-2 text-sm font-bold text-[#535665]"><h4 className="rounded-md bg-[#48c479] px-2 py-1 text-xs text-white">★ {avgRating}</h4><span>•</span><h4>{sla.deliveryTime} mins</h4><span>•</span><h4>{costForTwo}</h4></div></div>
       </Link>
     </div>
   );
 };
 
 export default RestaurantCard;
+
+// Changes made: converted restaurant cards into Swiggy-style image cards while preserving links and restaurant data.

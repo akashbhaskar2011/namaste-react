@@ -25,46 +25,73 @@ const ResturantMenu = () => {
     .filter((card) => card?.["@type"]?.includes("ItemCategory"));
 
   return (
-    <div className="menu">
-      <h1>{name}</h1>
-      <p>{cuisines.join(", ")}</p>
-      <p>{costForTwoMessage}</p>
+    <div className="menu mx-auto min-h-screen max-w-5xl bg-[#f7f7f7] px-4 py-8 text-gray-800 sm:px-8">
+      <div className="rounded-2xl border-b border-gray-200 bg-white p-6 pb-6 shadow-sm">
+        <h1 className="mb-3 text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">
+          {name}
+        </h1>
 
-      <h2 className="menu-heading">Menu</h2>
+        <p className="mb-2 text-sm text-gray-500">
+          {cuisines.join(", ")}
+        </p>
+
+        <p className="text-sm font-semibold text-gray-700">
+          {costForTwoMessage}
+        </p>
+      </div>
+
+      <h2 className="menu-heading py-8 text-center text-xl font-extrabold uppercase tracking-[0.2em] text-[#282c3f]">
+        Menu
+      </h2>
 
       {menuCategories.map((category) => (
-        <div className="category" key={category.categoryId || category.title}>
-          <h2>{category.title}</h2>
+        <div
+          className="category mb-5 overflow-hidden rounded-2xl bg-white px-0 py-2 shadow-sm"
+          key={category.categoryId || category.title}
+        >
+          <h2 className="mb-2 bg-gray-50 px-4 py-4 text-lg font-bold text-gray-800">
+            {category.title}
+          </h2>
 
           {category.itemCards?.map((item) => {
             const dish = item.card.info;
             const price = dish.price ?? dish.defaultPrice;
 
             return (
-              <div className="dish" key={dish.id}>
-                <div className="dish-info">
-                  <h3>{dish.name}</h3>
+              <div
+                className="dish flex items-start justify-between gap-4 border-b border-dashed border-gray-300 px-2 py-6 last:border-b-0 sm:px-4"
+                key={dish.id}
+              >
+                <div className="dish-info min-w-0 flex-1 pt-1">
+                  <h3 className="mb-2 text-base font-semibold leading-6 text-gray-800">
+                    {dish.name}
+                  </h3>
 
-                  <p>
+                  <p className="mb-2 text-sm font-semibold text-gray-800">
                     {price != null
                       ? `₹${(price / 100).toFixed(0)}`
                       : "Price unavailable"}
                   </p>
 
                   {dish.description && (
-                    <p className="description">{dish.description}</p>
+                    <p className="description line-clamp-3 text-sm leading-5 text-gray-500">
+                      {dish.description}
+                    </p>
                   )}
                 </div>
 
-                <div className="dish-image">
+                <div className="dish-image relative flex w-28 shrink-0 flex-col items-center sm:w-36">
                   {dish.imageId && (
                     <img
+                      className="h-24 w-28 rounded-xl object-cover sm:h-28 sm:w-36"
                       src={`https://media-assets.swiggy.com/swiggy/image/upload/${dish.imageId}`}
                       alt={dish.name}
                     />
                   )}
 
-                  <button>ADD +</button>
+                  <button className="relative -mt-4 min-w-24 rounded-lg border border-[#fc8019] bg-white px-5 py-2 text-sm font-extrabold text-[#fc8019] shadow-md transition hover:bg-[#fff0e6] active:scale-95">
+                    ADD +
+                  </button>
                 </div>
               </div>
             );
@@ -76,6 +103,7 @@ const ResturantMenu = () => {
 };
 
 export default ResturantMenu;
+
 
 // below this was my code
 // import { useEffect, useState } from "react";
@@ -139,3 +167,5 @@ export default ResturantMenu;
 // };
 
 // export default ResturantMenu;
+
+// Changes made: refined the existing menu screen with Swiggy-style spacing, cards, and orange action accents; menu data logic is unchanged.
