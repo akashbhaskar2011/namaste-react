@@ -1,32 +1,52 @@
+import UserContext from "../utils/UserContext";
 import UserClass from "./Userclass";
 import User from "./Users";
 import React from "react";
 
 class About extends React.Component {
+  constructor(props) {
+    super(props);
 
-    constructor(props){
-        super(props);
-
-        // console.log("parent-constructor ")
-    }
-     componentDidMount(){
+    // console.log("parent-constructor ")
+  }
+  componentDidMount() {
     // console.log("parent component did mount")
   }
-    render(){
-        // console.log("parent-render")
-         return(
-        <div className="mx-auto max-w-4xl px-4 py-12 sm:px-6">
-            <div className="rounded-3xl bg-white p-8 shadow-sm sm:p-12"><p className="mb-3 text-sm font-bold uppercase tracking-[0.18em] text-[#fc8019]">Our story</p><h1 className="text-3xl font-extrabold text-[#282c3f]">About</h1>
-            <h2 className="mt-3 text-lg font-medium text-[#686b78]">this is namaste react web series</h2>
-            {/* <User name={"akash bhaskar (functional component)"}></User> */}
-            <div className="mt-8"><UserClass name={"akash bhaskar (class component)"}></UserClass></div></div>
-            {/* <UserClass name={"miku babu (class component)"}></UserClass> */}
+  render() {
+    // console.log("parent-render")
+    return (
+      <div className="mx-auto max-w-4xl px-4 py-12 sm:px-6">
+        <div className="rounded-3xl bg-white p-8 shadow-sm sm:p-12">
+          <p className="mb-3 text-sm font-bold uppercase tracking-[0.18em] text-[#fc8019]">
+            Our story
+          </p>
+
+          
+          <h1 className="text-3xl font-extrabold text-[#282c3f]">About</h1>
+          <h2 className="mt-3 text-lg font-medium text-[#686b78]">
+            this is namaste react web series
+          </h2>
+         
+          
+          
+          {/* <User name={"akash bhaskar (functional component)"}></User> */}
+          <div className="mt-8">
+            <UserClass name={"akash bhaskar (class component)"}></UserClass>
+            <UserContext.Consumer>
+  {(logggedInUser) => {
+    console.log(logggedInUser);
+    return <h1>{logggedInUser.logggedInUser}</h1>;
+  }}
+</UserContext.Consumer>
+           
+          </div>
         </div>
-    )
-    }
-
+        {/* <UserClass name={"miku babu (class component)"}></UserClass> */}
+       
+      </div>
+    );
+  }
 }
-
 
 /*
 REACT CLASS COMPONENT LIFECYCLE
@@ -66,11 +86,6 @@ IMPORTANT:
 - Parent renders before children.
 - Children mount before the parent's componentDidMount().
 */
-
-
-
-
-
 
 // const About = ()=> {
 //     return(

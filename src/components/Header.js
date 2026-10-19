@@ -1,14 +1,17 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import LOGO_URL, { LOGO_URL2 } from "../utils/constancts";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
+import UserContext from "../utils/UserContext";
 
 const Header = () => {
   const [btnNameReact, setButtonReact] = useState("login");
 
   const onlineStatus = useOnlineStatus();
 
+const {logggedInUser} = useContext(UserContext)
 
+console.log(logggedInUser)
 
   useEffect(() => {}, []);
   return (
@@ -37,6 +40,9 @@ const Header = () => {
           <li className="hidden sm:block">
             <a className="transition hover:text-[#fc8019]">Cart</a>
           </li>
+           <li className="hidden sm:block">
+            <a className="transition hover:text-[#fc8019]">{logggedInUser}</a>
+          </li>
           <button 
             className="login-btn rounded-lg border border-[#fc8019] bg-[#fc8019] px-3 py-2 text-xs font-bold uppercase tracking-wide text-white shadow-sm transition hover:bg-[#e66f11] sm:px-4"
             onClick={() => {
@@ -47,6 +53,7 @@ const Header = () => {
           >
             {btnNameReact}
           </button>
+         
         </ul>
       </div>
     </div>

@@ -1,19 +1,25 @@
-import RestaurantCard from "./ResturantCard";
+import RestaurantCard,{withPromotedLabel} from "./ResturantCard";
 import resList from "../utils/mockData";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Shimmer from "./Shimmer";
 import { SWIGGY_RESTURANTS } from "../utils/constancts";
 import useOnlineStatus from "../utils/useOnlineStatus";
+import UserContext from "../utils/UserContext";
+
 
 //state variable - super powefrful variable
 // whenever state of the variabe; cahnges , react triggers a reconcillation cycle , (re- rendering of the componenet)
 
 const Body = () => {
+
+  const {logggedInUser, setUserName} = useContext(UserContext)
   const [listOfResturant, setListOfResturant] = useState([]);
 
   const [searchText, setSearchText] = useState("");
 
   const [filteredRresturantList, setFilteredResturant] = useState([]);
+
+  const RestaurantCardPromoted = withPromotedLabel(RestaurantCard)
 
   //if no dependecy array then useEffert is called on every render
   //if dependceny array is empty = [] => use effect is called only once when the intial renders happens
@@ -86,6 +92,8 @@ console.log(json)
           >
             search
           </button>
+
+          
         </div>
         <button
           className="filter-btn rounded-lg border border-gray-300 bg-white px-5 py-3 font-bold text-[#3d4152] shadow-sm transition hover:border-[#fc8019] hover:text-[#fc8019]"
@@ -96,22 +104,53 @@ console.log(json)
 
             setListOfResturant(filteredList);
           }}
+
+
+
+
+          
         >
           Top rated Restaurant
         </button>
+
+         <input
+
+            type="text"
+            className="search-box min-w-0 flex-1 rounded-lg border border-gray-200 bg-white px-4 py-3 text-[#282c3f] placeholder:text-gray-400 outline-none focus:border-[#fc8019] focus:ring-2 focus:ring-[#fc8019]/20"
+
+            value={logggedInUser}
+            onChange={(e) => {
+              // console.log(e.timeStamp)
+              setUserName(e.target.value);
+            }}
+          ></input>
       </div>
 
+
+
       <div className="res-container grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-        {filteredRresturantList.length === 0 ? (
-           <h2 className="col-span-full py-10 text-center text-xl font-semibold text-[#3d4152]">
-        No restaurant found!
-      </h2>
-        ) : (
-          filteredRresturantList.map((resData) => (
-            <RestaurantCard key={resData.info.id} resData={resData.info} />
-          ))
-        )}
-      </div>
+  {console.log(filteredRresturantList)}
+
+  {filteredRresturantList.length === 0 ? (
+    <h2 className="col-span-full py-10 text-center text-xl font-semibold text-[#3d4152]">
+      No restaurant found!
+    </h2>
+  ) : (
+    filteredRresturantList.map((resData) =>
+      Number(resData.info.avgRating) > 4.5 ? (
+        <RestaurantCardPromoted
+          key={resData.info.id}
+          resData={resData.info}
+        />
+      ) : (
+        <RestaurantCard
+          key={resData.info.id}
+          resData={resData.info}
+        />
+      )
+    )
+  )}
+</div>
     </div>
   );
 };

@@ -38,6 +38,25 @@ const RestaurantCard = (props) => {
   );
 };
 
+
+//higher order component
+
+//input - returatnCard ==> resturantcardpromoted
+
+export const withPromotedLabel =(RestaurantCard)=>{
+  return (props) =>{
+    return(
+      <div className="relative">
+        <label className="absolute left-3 top-3 z-10 rounded-md bg-gradient-to-r from-orange-500 to-red-500 px-3 py-1.5 text-xs font-extrabold uppercase tracking-wide text-white shadow-lg">
+          Highly Loved ❤️
+        </label>
+
+        <RestaurantCard {...props} />
+      </div>
+    )
+  }
+}
+
 export default RestaurantCard;
 
 // Changes made: converted restaurant cards into Swiggy-style image cards while preserving links and restaurant data.
