@@ -11,7 +11,9 @@ import ContactUs from "./components/ContactUs";
 import ResturantMenu from "./components/ResturantMenu";
 // import Grocery from "./components/Grocery";
 import UserContext from "./utils/UserContext";
-
+import {Provider} from "react-redux";
+import appStore from "./utils/appStore";
+import Cart from "./components/Cart";
 
 
 const Grocery = lazy(()=>import("./components/Grocery"))
@@ -27,6 +29,8 @@ const AppLayout = () => {
 
 
   return (
+    <Provider store = {appStore}> 
+    {/* //this is from redux */}
     <UserContext.Provider value={{logggedInUser : userInfo  , setUserName}}>
     <div className="app min-h-screen bg-[#f7f7f7]">
       <Header />
@@ -34,6 +38,8 @@ const AppLayout = () => {
       <Outlet></Outlet>
     </div>
     </UserContext.Provider>
+    {/* //this is from useContext */}
+    </Provider>
     
   );
 };
@@ -67,6 +73,10 @@ const AppRouter = createBrowserRouter([
         path: "resturant/:resId",
         element: <ResturantMenu></ResturantMenu>,
       },
+      {
+        path : "/cart",
+        element: <Cart></Cart>
+      }
     ],
     errorElement: <ErrorElement></ErrorElement>,
   },

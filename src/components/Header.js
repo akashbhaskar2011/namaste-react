@@ -3,6 +3,7 @@ import LOGO_URL, { LOGO_URL2 } from "../utils/constancts";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
 import UserContext from "../utils/UserContext";
+import { useSelector } from "react-redux";
 
 const Header = () => {
   const [btnNameReact, setButtonReact] = useState("login");
@@ -10,6 +11,12 @@ const Header = () => {
   const onlineStatus = useOnlineStatus();
 
 const {logggedInUser} = useContext(UserContext)
+
+//selector
+const cartItems = useSelector((store)=> store.cart.items);
+//subscribing to the store using selctor 
+
+console.log(cartItems)
 
 console.log(logggedInUser)
 
@@ -37,8 +44,8 @@ console.log(logggedInUser)
            <li className="hidden md:block">
             <Link to="/grocery" className="header-link transition hover:text-[#fc8019]">Instamart</Link> 
           </li>
-          <li className="hidden sm:block">
-            <a className="transition hover:text-[#fc8019]">Cart</a>
+          <li className="hidden sm:block" >
+            <Link to="/cart" className="transition hover:text-[#fc8019]">Cart {cartItems.length}</Link>
           </li>
            <li className="hidden sm:block">
             <a className="transition hover:text-[#fc8019]">{logggedInUser}</a>

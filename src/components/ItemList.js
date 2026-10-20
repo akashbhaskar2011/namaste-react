@@ -1,4 +1,13 @@
+import { useDispatch } from "react-redux";
+import { addItems } from "../utils/cartSLice";
+
 const ItemList = ({ items }) => {
+  const dispatch = useDispatch();
+  const handleAddItem = (dish)=>{
+    //dispatch an action
+    dispatch(addItems(dish))
+    // console.log(dish)
+  }
   return (
     <div>
       {items?.map((item) => {
@@ -40,7 +49,8 @@ const ItemList = ({ items }) => {
                 />
               )}
 
-              <button className="relative -mt-4 min-w-24 rounded-lg border border-[#fc8019] bg-white px-5 py-2 text-sm font-extrabold text-[#fc8019] shadow-md transition hover:bg-[#fff0e6] active:scale-95">
+              <button className="relative -mt-4 min-w-24 rounded-lg border border-[#fc8019] bg-white px-5 py-2 text-sm font-extrabold text-[#fc8019] shadow-md transition hover:bg-[#fff0e6] active:scale-95"
+              onClick={()=>{handleAddItem(item)}}>
                 ADD +
               </button>
             </div>
